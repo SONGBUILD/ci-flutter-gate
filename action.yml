@@ -1,0 +1,7 @@
+name: 'ci-flutter-gate'
+description: 'Fail if core Flutter kit files are missing'
+runs:
+  using: 'composite'
+  steps:
+    - run: test -f lib/core/result.dart || test -f pubspec.yaml
+      shell: bash
