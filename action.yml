@@ -1,7 +1,10 @@
-name: 'ci-flutter-gate'
-description: 'Fail if core Flutter kit files are missing'
+name: ci-flutter-gate
+description: Fail the job when pubspec.yaml or lib/ is missing
 runs:
-  using: 'composite'
+  using: composite
   steps:
-    - run: test -f lib/core/result.dart || test -f pubspec.yaml
-      shell: bash
+    - shell: bash
+      run: |
+        test -f pubspec.yaml
+        test -d lib
+        grep -Eq 'flutter:|sdk:' pubspec.yaml
